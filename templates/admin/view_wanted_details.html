@@ -1,0 +1,43 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-bordered">
+    <tr style="background-color: #FF6F0F;color: black">
+      <th scope="col">Sl.No</th>
+      <th scope="col">Police Station Info</th>
+      <th scope="col">Category</th>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Age</th>
+      <th scope="col">Address</th>
+      <th scope="col">Photo</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>&nbsp;{{ i.POLICESTATION.stationname }}<br>{{ i.POLICESTATION.contact }}</td>
+      <td>&nbsp;{{ i.CATEGORY.category_name }}</td>
+      <td>&nbsp;{{ i.name }}</td>
+      <td>&nbsp;{{ i.gender }}</td>
+      <td> {{ i.age }}&nbsp;</td>
+      <td>&nbsp;{{ i.place }}<br>{{ i.post }}<br>{{ i.pin }}</td>
+      <td>&nbsp;<img src="{{ i.photo }}" height="100px" width="100px"> </td>
+      
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

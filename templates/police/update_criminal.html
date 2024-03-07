@@ -1,0 +1,80 @@
+{% extends 'police/police_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/update_criminal_post/{{ data1.id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="row">Category</th>
+      <td>
+        <select name="select" id="select" class="form-control">
+            {% for i in data2 %}
+                <option value="{{ i.id }}" {% if i.id == data1.CATEGORY_id %}selected{% endif %}>{{ i.category_name }}</option>
+            {% endfor %}
+      </select></td>
+    </tr>
+    <tr>
+      <th scope="row">Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" value="{{ data1.name }}" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Gender</th>
+      <td>
+          <input type="radio" name="RadioGroup1" value="male" id="RadioGroup1_0"
+                {% if data1.gender == 'Male' %}selected{% endif %}Male
+          />
+          Male
+
+
+          <input type="radio" name="RadioGroup1" value="female" id="RadioGroup1_1"
+                {% if data1.gender == 'female' %}checked{% endif %}Female
+          />
+          Female
+        <br />
+      </td>
+
+    </tr>
+    <tr>
+      <th scope="row">Age</th>
+      <td>
+      <input type="number" name="textfield2" id="textfield2" value="{{ data1.age }}" min="10" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Place</th>
+      <td>
+      <input type="text" name="textfield3" id="textfield3" value="{{ data1.place }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th scope="row">Post</th>
+      <td>
+      <input type="text" name="textfield4" id="textfield4" value="{{ data1.post }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Pin</th>
+      <td>
+      <input type="tel" name="textfield5" id="textfield5" value="{{ data1.pin }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Photo</th>
+      <td>
+          <img src="{{ data1.photo }}" alt="" width="100px" height="100px"/>
+      <input type="file" name="fileField" id="fileField" /></td>
+    </tr>
+    <tr>
+        <th colspan="2" scope="row"><div align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-primary" /></div></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

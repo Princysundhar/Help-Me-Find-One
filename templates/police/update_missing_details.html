@@ -1,0 +1,75 @@
+{% extends 'police/police_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/update_missing_post/{{ data.id }}" method="post" enctype="multipart/form-data" name="form1" id="form1">
+{% csrf_token %}
+  <table width="200" border="1" class="table table-bordered">
+    <tr>
+      <th scope="row">Name</th>
+      <td>
+      <input type="text" name="textfield" id="textfield" value="{{ data.name }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <th scope="row">Photo</th>
+      <td>
+          <img src="{{ data.photo }}" height="100px" width="100px" alt=""/>
+      <input type="file" name="fileField" id="fileField" accept="image/*" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Gender</th>
+      <td><p>
+        <label>
+          <input type="radio" name="RadioGroup1" value="Male" id="RadioGroup1_0"
+                {% if data.gender == 'Male' %}checked{% endif %}male
+
+          />
+          Male</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Female" id="RadioGroup1_1"
+                {% if data.gender == 'Female' %}checked{% endif %}female
+          />
+          Female</label>
+        <br />
+      </p></td>
+    </tr>
+    <tr>
+      <th scope="row">Place</th>
+      <td>
+      <input type="text" name="textfield2" id="textfield2" value="{{ data.place }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Post</th>
+      <td>
+      <input type="text" name="textfield3" id="textfield3" value="{{ data.post }}" class="form-control" required /></td>
+    </tr>
+    <tr>
+      <th scope="row">Pin</th>
+      <td>
+      <input type="tel" name="textfield4" id="textfield4" value="{{ data.pin }}" pattern = "[0-9]{6}" class="form-control" /></td>
+    </tr>
+    <tr>
+      <th scope="row">Id Proof</th>
+      <td><label for="fileField2"></label>
+          <a href="{{ data.id_proof }}">Click Here</a>
+
+      <input type="file" name="fileField2" id="fileField2" /></td>
+    </tr>
+    <tr>
+        <th colspan="2" scope="row"><div align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-primary" /></div></th>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+
+
+{% endblock %}

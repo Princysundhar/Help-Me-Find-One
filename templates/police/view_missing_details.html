@@ -1,0 +1,42 @@
+{% extends 'police/police_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+
+  <table width="200" border="1" class="table table-bordered">
+    <tr style="background-color: #FF6F0F;color: black">
+    <th scope="col">Sl.No</th>
+    <th scope="col">Name</th>
+    <th scope="col">Photo</th>
+    <th scope="col">Gender</th>
+    <th scope="col">Address</th>
+    <th scope="col">Id Proof</th>
+    <th scope="col">&nbsp;</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>&nbsp;{{ forloop.counter }}</td>
+    <td>&nbsp;{{ i.name }}</td>
+    <td>&nbsp;<img src="{{ i.photo }}" height="100px" width="100px"> </td>
+    <td>&nbsp;{{ i.gender }}</td>
+    <td>&nbsp;{{ i.place }}<br>{{ i.post }}<br>{{ i.pin }}</td>
+    <td>&nbsp;<a href="{{ i.id_proof }}" class="fas fa-file-pdf">  Click here </a> </td>
+    <td><p><a href="/update_missing/{{ i.id }}#bb" class="btn btn-primary">Update</a></p>
+      <p><a href="/delete_missing/{{ i.id }}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a></p>
+      <p><a href="/update_status_missing/{{ i.id }}" class="btn btn-primary">set as Found</a></p></td>
+  </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>
+
+{% endblock %}
